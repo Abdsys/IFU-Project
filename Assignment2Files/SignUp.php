@@ -1,28 +1,63 @@
-<?php // <--- do NOT put anything before this PHP tag
+<?php
 	include('Functions.php');
 	$cookieMessage = getCookieMessage();
 	$cookieUser = getCookieUser();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>  </title>
+	<title>SignUp</title>
 	<link rel="stylesheet" type="text/css" href="styles.css"> 
 	
 </head>
 <body>
 	<div class="container">
-		<div class="row", id="header">
-			
+		<div class="row" id="header">
+			<h2>CSE4IFU - SignUp</h2>
 		</div>
-		<div class="row", id="nav">  
-			
+		<div class="row" id="nav">  
+			<ul>
+				<li><a href="Homepage.php">Home</a></li>
+				<li><a href="Topics.php">Topics</a></li>
+				<?php
+					if ($cookieUser === "") {
+						echo '<li><a href="SignIn.php">Sign In</a></li>';
+						echo '<li><a href="SignUp.php">Sign Up</a></li>';
+					} else {
+						echo '<li><a href="LogOutUser.php">Sign Out</a></li><br>';
+						echo '<span class="cookie-message">' . $cookieUser . '</span>';
+					}
+				?>
+			</ul>
 		</div>
-		<div class="row", id="content">
-			
+		<div class="row" id="content">
+			<?php
+				echo $cookieMessage;
+			?>
+			<!--Sign up form, contains four fields -->
+			<form name="Sign-up-form" method="POST" action="AddUser.php">
+				<div class="form-row">
+					<label for="username">Username:</label>
+					<input type="text" name="Username" id="username">
+				</div>
+				<div class="form-row">
+					<label for="firstname">First name:</label>
+					<input type="text" name="Firstname" id="firstname">
+				</div>
+				<div class="form-row">
+					<label for="surname">Surname:</label>
+					<input type="text" name="Surname" id="surname">
+				</div>
+				<div class="form-row">
+					<label for="shorttag">Short Tag:</label>
+					<input type="text" name="Shorttag" id="shorttag">
+				</div>
+				<br/>
+				<input type="submit" value="SignUp" class="submit-button">
+			</form>
 		</div>
-		<div class="row", id="footer">
-			
+		<div class="row" id="footer">
+			<h3>Abdur Rehman - 21452806 - CSE4IFU - 2023 Sem 1</h3>
 		</div>
 	</div>
 </body>
